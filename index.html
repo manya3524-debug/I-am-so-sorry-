@@ -1,160 +1,222 @@
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Am So Sorry 🐧❤️</title>
+<title>For Zyaan 🐧</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 body{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Arial,sans-serif;
-  overflow:hidden;
-  background:linear-gradient(135deg,#dff6ff,#fff0f6);
+height:100vh;
+overflow:hidden;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(#617f9d,#d8ebff);
+transition:1s;
 }
 
-.penguin-bg{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
+.rain{
+position:fixed;
+inset:0;
+pointer-events:none;
 }
 
-.penguin{
-  position:absolute;
-  font-size:28px;
-  animation:float 8s linear infinite;
-  opacity:.75;
+.drop{
+position:absolute;
+width:2px;
+height:35px;
+background:white;
+opacity:.6;
+animation:fall 1s linear infinite;
 }
 
-@keyframes float{
-  from{transform:translateY(110vh) rotate(0deg)}
-  to{transform:translateY(-20vh) rotate(360deg)}
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
 }
 
 .card{
-  width:90%;
-  max-width:420px;
-  background:white;
-  padding:32px 24px;
-  border-radius:28px;
-  text-align:center;
-  box-shadow:0 12px 35px rgba(0,0,0,.18);
-  position:relative;
-  z-index:2;
+width:90%;
+max-width:450px;
+background:rgba(255,255,255,.92);
+padding:30px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+z-index:2;
 }
 
-.big-penguin{
-  font-size:80px;
-  animation:bounce 1.2s infinite;
+.penguin{
+font-size:80px;
+animation:bounce 1.2s infinite;
 }
 
 @keyframes bounce{
-  50%{transform:translateY(-10px)}
+50%{
+transform:translateY(-10px);
+}
 }
 
 h1{
-  color:#ff4f81;
-  margin:15px 0;
+color:#315d84;
+margin-bottom:15px;
 }
 
 p{
-  color:#444;
-  line-height:1.6;
-  margin-bottom:20px;
+line-height:1.7;
+color:#444;
 }
 
 button{
-  border:none;
-  padding:13px 20px;
-  border-radius:25px;
-  margin:8px;
-  font-size:15px;
-  cursor:pointer;
+border:none;
+padding:13px 22px;
+border-radius:25px;
+cursor:pointer;
+margin:8px;
+font-size:15px;
 }
 
-.yes{
-  background:#ff4f81;
-  color:white;
+.main{
+background:#315d84;
+color:white;
 }
 
-.no{
-  background:#e6e6e6;
+.soft{
+background:#ececec;
+}
+
+.hidden{
+display:none;
 }
 
 #msg{
-  margin-top:18px;
-  color:#ff4f81;
-  font-weight:bold;
-  line-height:1.6;
-}
-
-.small{
-  font-size:13px;
-  color:#777;
-  margin-top:14px;
+margin-top:20px;
+font-weight:bold;
+color:#ff4f81;
+line-height:1.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="penguin-bg" id="penguins"></div>
+<div class="rain" id="rain"></div>
 
 <div class="card">
-  <div class="big-penguin">🐧</div>
 
-  <h1>I'm Really Sorry ❤️</h1>
+<div class="penguin">🐧</div>
 
-  <p>
-    I know things got messy.<br>
-    I know I reacted badly sometimes.<br>
-    But you matter to me a lot, okay? 😭
-  </p>
+<h1 id="title">Tap to clear the rain 🌧️</h1>
 
-  <button class="yes" onclick="forgiveMe()">
-    Okay, I forgive you ❤️
-  </button>
+<p id="intro">
+Some days we fight.<br>
+Some days we don't talk.<br>
+Some days I convince myself I don't care.<br><br>
 
-  <button class="no" onclick="nope()">
-    No, still angry 😤
-  </button>
+Unfortunately... this isn't one of those days. 🐧
+</p>
 
-  <div id="msg"></div>
+<br>
 
-  <div class="small">
-    from your dramatic little penguin 🐧
-  </div>
+<button class="main" onclick="nextStep(event)">
+Clear the rain 🐧
+</button>
+
+<div id="stage2" class="hidden">
+
+<p>
+Welcome to my completely unnecessary,<br>
+highly emotional penguin presentation.<br><br>
+
+Please proceed responsibly. 🐧
+</p>
+
+<br>
+
+<p>
+I know things have been weird.<br><br>
+
+I know we both get stubborn.<br>
+I know neither of us says what we're actually feeling half the time.<br><br>
+
+But for whatever reason...<br>
+you still matter to me.<br><br>
+
+And honestly?<br><br>
+
+That is extremely inconvenient. 😤🐧
+</p>
+
+<br>
+
+<button class="main" onclick="forgive(event)">
+Fine. Come here. ❤️
+</button>
+
+<button class="soft" onclick="nope(event)">
+Absolutely not 😤
+</button>
+
+<div id="msg"></div>
+
+</div>
+
 </div>
 
 <script>
-const bg = document.getElementById("penguins");
 
-for(let i=0;i<22;i++){
-  const p = document.createElement("div");
-  p.className = "penguin";
-  p.innerHTML = "🐧";
-  p.style.left = Math.random()*100 + "vw";
-  p.style.animationDelay = Math.random()*8 + "s";
-  p.style.animationDuration = 6 + Math.random()*6 + "s";
-  bg.appendChild(p);
+const rain=document.getElementById("rain");
+
+for(let i=0;i<100;i++){
+let drop=document.createElement("div");
+drop.className="drop";
+drop.style.left=Math.random()*100+"vw";
+drop.style.top=Math.random()*100+"vh";
+drop.style.animationDuration=(0.5+Math.random())+"s";
+rain.appendChild(drop);
 }
 
-function forgiveMe(){
-  document.getElementById("msg").innerHTML =
-  "YAYYY 😭❤️<br>I promise I’ll try better.<br>No more unnecessary drama... okay maybe little bit 🐧";
+function nextStep(e){
+e.stopPropagation();
+
+rain.style.display="none";
+
+document.body.style.background=
+"linear-gradient(135deg,#dff6ff,#fff3f8)";
+
+document.getElementById("title").innerHTML=
+"For Zyaan 🐧❤️";
+
+document.getElementById("intro").style.display="none";
+
+document.getElementById("stage2").style.display="block";
 }
 
-function nope(){
-  document.getElementById("msg").innerHTML =
-  "Wrong button 😭<br>This penguin refuses rejection 🐧❤️";
+function forgive(e){
+e.stopPropagation();
+
+document.getElementById("msg").innerHTML=
+"YAYYY 😭❤️<br><br>I wasn't trying to win.<br><br>I just didn't want to lose you.<br><br>🐧";
 }
+
+function nope(e){
+e.stopPropagation();
+
+document.getElementById("msg").innerHTML=
+"Wrong answer 😤🐧<br><br>Please reconsider.<br><br>The penguin has already prepared a 47-slide presentation.";
+}
+
 </script>
 
 </body>
 </html>
+  
