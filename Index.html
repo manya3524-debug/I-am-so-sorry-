@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>I'm Sorry ❤️</title>
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#ff9eb5,#ffd6df);
+    background:linear-gradient(135deg,#ffb6c1,#ffd6e0);
     font-family:Arial,sans-serif;
     overflow:hidden;
 }
@@ -21,30 +27,8 @@ body{
     padding:40px;
     border-radius:25px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-h1{
-    color:#ff4f81;
-}
-
-button{
-    padding:12px 22px;
-    border:none;
-    border-radius:20px;
-    margin:10px;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.yes{
-    background:#ff4f81;
-    color:white;
-}
-
-.no{
-    background:#ddd;
-    position:absolute;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    max-width:400px;
 }
 
 .heart{
@@ -56,6 +40,41 @@ button{
     50%{
         transform:scale(1.2);
     }
+}
+
+h1{
+    color:#ff4f81;
+    margin:15px 0;
+}
+
+p{
+    color:#555;
+    margin-bottom:20px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:16px;
+    margin:8px;
+}
+
+.yes{
+    background:#ff4f81;
+    color:white;
+}
+
+.no{
+    background:#e5e5e5;
+    position:absolute;
+}
+
+#message{
+    margin-top:20px;
+    color:#ff4f81;
+    font-weight:bold;
 }
 </style>
 </head>
@@ -69,10 +88,10 @@ button{
 
     <p>
         I know I messed up.<br>
-        Please give me one chance 😭
+        Please forgive me 😭
     </p>
 
-    <button class="yes" onclick="forgive()">
+    <button class="yes" onclick="forgiveMe()">
         Okay, I forgive you ❤️
     </button>
 
@@ -80,23 +99,23 @@ button{
         No 😤
     </button>
 
-    <h2 id="msg"></h2>
+    <div id="message"></div>
 </div>
 
 <script>
-function forgive(){
-    document.getElementById("msg").innerHTML =
-    "YAYYYYY ❤️😭 THANK YOU";
+function forgiveMe(){
+    document.getElementById("message").innerHTML =
+    "YAYYY ❤️ Thank you for forgiving me 😭";
 }
 
 const noBtn = document.getElementById("noBtn");
 
-noBtn.addEventListener("mouseover",()=>{
-    const x = Math.random()*(window.innerWidth-150);
-    const y = Math.random()*(window.innerHeight-100);
+noBtn.addEventListener("mouseover", function(){
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 80);
 
-    noBtn.style.left = x+"px";
-    noBtn.style.top = y+"px";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 });
 </script>
 
