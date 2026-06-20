@@ -1,29 +1,28 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I Am Sorry 🐧</title>
+<title>For Zyaan 🐧💙</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 
 body{
-  height:100vh;
+  min-height:100vh;
   overflow:hidden;
-  font-family:Arial,sans-serif;
   background:linear-gradient(180deg,#fffaf2,#ffd6dc);
   position:relative;
 }
 
 .float{
-  position:absolute;
+  position:fixed;
   font-size:28px;
   opacity:.45;
-  animation:softFloat 5s infinite ease-in-out;
+  animation:floaty 5s infinite ease-in-out;
 }
 
-@keyframes softFloat{
+@keyframes floaty{
   50%{transform:translateY(-15px)}
 }
 
@@ -34,12 +33,20 @@ body{
   transform:translate(-50%,-50%);
   text-align:center;
   width:90%;
+  max-width:430px;
 }
 
 h1{
   font-size:28px;
   color:#1d1111;
-  margin-bottom:20px;
+  margin-bottom:18px;
+}
+
+.apology{
+  font-size:17px;
+  line-height:1.7;
+  color:#4d2f2f;
+  margin-bottom:24px;
 }
 
 button{
@@ -49,26 +56,28 @@ button{
   font-size:18px;
   font-weight:bold;
   cursor:pointer;
-  transition:.3s;
+  transition:.25s;
 }
 
 #yesBtn{
   background:#b00000;
   color:white;
   box-shadow:0 8px 20px rgba(176,0,0,.3);
+  z-index:5;
 }
 
 #noBtn{
-  position:absolute;
+  position:fixed;
   background:white;
   color:#1d1111;
   border:3px solid #b00000;
   box-shadow:0 8px 18px rgba(0,0,0,.18);
   transform:rotate(-12deg);
+  z-index:10;
 }
 
 #msg{
-  margin-top:22px;
+  margin-top:18px;
   color:#b00000;
   font-weight:bold;
   font-size:18px;
@@ -88,7 +97,17 @@ button{
 <div class="float" style="bottom:12%;right:8%;">💕</div>
 
 <div class="mainBox">
-  <h1>Zyaan, will you forgive me? 🥺</h1>
+  <h1>vidit , will you forgive me? 🥺</h1>
+
+  <div class="apology">
+    I am sorry.<br><br>
+    I know I messed up.<br>
+    I know I said I wouldn't do it in front of them again,<br>
+    but I still did.<br><br>
+    I shouldn't have reacted there.<br>
+    Sorry for putting you in that position in front of them.<br><br>
+    Please maan jayein. 🐧
+  </div>
 
   <button id="yesBtn" onclick="yesClicked()">
     I Forgive You 💙
@@ -98,7 +117,7 @@ button{
 </div>
 
 <button id="noBtn" onclick="noClicked()">
-  I’ll write you a poem 📝
+  I'll write you a poem 📝
 </button>
 
 <script>
@@ -106,45 +125,121 @@ let noCount = 0;
 
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
-const msg = document.getElementById("msg");
 
 const noTexts = [
-  "I’ll write you a poem 📝",
-  "I’ll say sorry again 🐧",
-  "Okay okay I deserve this 😭",
-  "Tiny penguin request 🥺",
+  "Okay okay 😭",
+  "Still angry? 🥺",
+  "I deserve that 🐧",
+  "Tiny penguin request 👉👈",
+  "Please reconsider 😭",
   "Last last chance 🤌",
-  "Please reconsider 😤",
-  "I am genuinely sorry ❤️"
+  "Pretty please? 🥺💙",
+  " i am sorry na ,🫠", 
+  "No button is tired ab maan Zyaan 😤"
 ];
 
 function moveNoButton(){
-  const x = Math.random() * (window.innerWidth - 220);
-  const y = Math.random() * (window.innerHeight - 90);
+  const padding = 20;
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+  const x = Math.max(padding, Math.random() * maxX);
+  const y = Math.max(padding, Math.random() * maxY);
 
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 
-  const angle = Math.floor(Math.random() * 40) - 20;
+  const angle = Math.floor(Math.random() * 50) - 25;
   noBtn.style.transform = "rotate(" + angle + "deg)";
 }
 
 function noClicked(){
   noBtn.innerHTML = noTexts[noCount % noTexts.length];
+
   moveNoButton();
 
-  yesBtn.style.fontSize = (18 + noCount * 2) + "px";
-  yesBtn.style.padding = (16 + noCount * 2) + "px " + (28 + noCount * 4) + "px";
+  yesBtn.style.transform = "scale(" + (1 + noCount * 0.09) + ")";
+  yesBtn.innerHTML = noCount > 4 ? "Please forgive me 💙" : "I Forgive You 💙";
 
   noCount++;
 }
 
 function yesClicked(){
-  msg.innerHTML = "Thank you 😭❤️<br>I really mean it.";
-  noBtn.style.display = "none";
+  document.body.innerHTML = `
+  <div style="
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(180deg,#fff5f5,#ffe4ea);
+    padding:25px;
+  ">
+    <div style="
+      background:white;
+      padding:35px 25px;
+      border-radius:30px;
+      max-width:450px;
+      width:100%;
+      text-align:center;
+      box-shadow:0 12px 30px rgba(0,0,0,.15);
+      font-family:Arial,sans-serif;
+    ">
+      <div style="font-size:90px;">🤗💙</div>
+
+      <h1 style="color:#1f8acb;margin-bottom:15px;">
+        You're forgiven 💙
+      </h1>
+
+      <p style="
+        font-size:18px;
+        line-height:1.8;
+        color:#4d2f2f;
+        font-style:italic;
+        margin-bottom:25px;
+      ">
+        "I am so sorry.<br><br>
+        I know I messed up.<br><br>
+        I shouldn't have reacted there.<br><br>
+        Sorry for putting you in that position in front of tthem<br><br>
+        Please maan jayein. 🐧"
+      </p>
+
+      <h2 style="color:#ff4f81;margin-bottom:20px;">
+        How can I make it up to you? 🥺💙
+      </h2>
+
+      <textarea
+        placeholder="Type your demands here 😤"
+        style="
+          width:100%;
+          height:100px;
+          padding:15px;
+          border-radius:18px;
+          border:2px solid #f1b6c8;
+          font-size:16px;
+          resize:none;
+        "></textarea>
+
+      <br><br>
+
+      <button style="
+        background:#1f8acb;
+        color:white;
+        border:none;
+        padding:14px 25px;
+        border-radius:20px;
+        font-size:16px;
+        font-weight:bold;
+      ">
+        Send Reply 💬
+      </button>
+    </div>
+  </div>
+  `;
 }
 
-moveNoButton();
+window.onload = moveNoButton;
+window.onresize = moveNoButton;
 </script>
 
 </body>
