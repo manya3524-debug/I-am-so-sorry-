@@ -1,6 +1,85 @@
     <!DOCTYPE html>
 <html>
-<body style="background:pink;text-align:center;padding-top:100px;font-family:Arial;">
-  <h1>IT WORKS ❤️</h1>
+<head>
+<meta charset="UTF-8">
+<title>I'm Sorry ❤️</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#ffd6e0;
+  font-family:Arial,sans-serif;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,0,0,0.15);
+}
+
+h1{
+  color:#ff4f81;
+}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  margin:5px;
+}
+
+.yes{
+  background:#ff4f81;
+  color:white;
+}
+
+.no{
+  background:#ddd;
+}
+
+#msg{
+  margin-top:15px;
+  color:#ff4f81;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>I'm Sorry ❤️</h1>
+
+  <p>Please forgive me 😭</p>
+
+  <button class="yes" onclick="forgiveMe()">
+    I forgive you ❤️
+  </button>
+
+  <button class="no" onclick="runAway()">
+    No 😤
+  </button>
+
+  <div id="msg"></div>
+</div>
+
+<script>
+function forgiveMe(){
+  document.getElementById("msg").innerHTML =
+  "YAYYY ❤️ THANK YOU 😭";
+}
+
+function runAway(){
+  alert("No button disabled 😭❤️");
+}
+</script>
+
 </body>
 </html>
