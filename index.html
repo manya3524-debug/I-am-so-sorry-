@@ -6,169 +6,245 @@
 <title>For Zyaan 🐧</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 
 body{
   min-height:100vh;
   overflow:hidden;
-  background:linear-gradient(180deg,#e8f7ff,#f8fbff,#fff2f5);
-  position:relative;
+  background:linear-gradient(#607d9b,#dceeff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* floating penguin background */
+.rain{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+.drop{
+  position:absolute;
+  width:2px;
+  height:35px;
+  background:white;
+  opacity:.65;
+  animation:fall 1s linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
+
 .float{
   position:fixed;
   font-size:30px;
   opacity:.45;
   animation:floaty 5s infinite ease-in-out;
-  z-index:1;
+  z-index:2;
 }
 
 @keyframes floaty{
-  50%{transform:translateY(-16px);}
+  50%{transform:translateY(-15px)}
 }
 
-.mainBox{
-  position:absolute;
-  top:42%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
+.card{
   width:90%;
-  max-width:430px;
+  max-width:440px;
+  background:rgba(255,255,255,.92);
+  padding:32px 24px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.2);
   z-index:5;
 }
 
 .bigPenguin{
   font-size:85px;
-  margin-bottom:8px;
   animation:bounce 1.2s infinite;
 }
 
 @keyframes bounce{
-  50%{transform:translateY(-10px);}
+  50%{transform:translateY(-10px)}
 }
 
 h1{
-  font-size:28px;
   color:#18384f;
-  margin-bottom:18px;
+  margin:15px 0;
 }
 
-.apology{
-  background:rgba(255,255,255,.88);
-  padding:22px;
-  border-radius:25px;
-  font-size:17px;
-  line-height:1.7;
+p{
   color:#3d2c2c;
-  margin-bottom:24px;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  line-height:1.7;
+  font-size:17px;
 }
 
 button{
   border:none;
-  padding:16px 28px;
+  padding:15px 24px;
   border-radius:24px;
-  font-size:18px;
+  font-size:17px;
   font-weight:bold;
   cursor:pointer;
+  margin:8px;
   transition:.25s;
 }
 
-#yesBtn{
+.main{
   background:#18384f;
   color:white;
-  box-shadow:0 8px 20px rgba(24,56,79,.32);
-  z-index:5;
+}
+
+.soft{
+  background:white;
+  color:#18384f;
+  border:3px solid #18384f;
+}
+
+.hidden{
+  display:none;
 }
 
 #noBtn{
   position:fixed;
-  background:white;
-  color:#18384f;
-  border:3px solid #18384f;
-  box-shadow:0 8px 18px rgba(0,0,0,.18);
-  transform:rotate(-12deg);
   z-index:20;
-  max-width:240px;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
 }
 
-#msg{
-  margin-top:18px;
-  color:#18384f;
-  font-weight:bold;
-  font-size:18px;
+.optionBtn{
+  width:100%;
+  margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="float" style="top:7%;left:8%;">🐧</div>
-<div class="float" style="top:15%;right:9%;">🧊</div>
-<div class="float" style="top:28%;right:13%;">🐟</div>
-<div class="float" style="top:38%;right:6%;">🐧</div>
-<div class="float" style="top:58%;left:8%;">🧊</div>
-<div class="float" style="top:62%;right:18%;">🐧</div>
-<div class="float" style="bottom:18%;left:7%;">✨</div>
-<div class="float" style="bottom:12%;right:8%;">🐟</div>
+<div class="rain" id="rain"></div>
 
-<div class="mainBox">
+<div class="float" style="top:8%;left:8%;">🐧</div>
+<div class="float" style="top:18%;right:10%;">🧊</div>
+<div class="float" style="top:35%;right:7%;">🐟</div>
+<div class="float" style="bottom:20%;left:9%;">🐧</div>
+<div class="float" style="bottom:12%;right:9%;">✨</div>
+
+<!-- SLIDE 1: RAIN APOLOGY -->
+<div class="card" id="slide1">
+  <div class="bigPenguin">🐧</div>
+
+  <h1>Tap to clear the rain 🌧️</h1>
+
+  <p>
+    I am sorry.<br><br>
+    I know I messed up.<br><br>
+    I know I said I wouldn't do it in front of them again,<br>
+    but I still did.<br><br>
+    I shouldn't have reacted there.<br><br>
+    Sorry for putting you in that position in front of them.<br><br>
+    Please maan jayein 🤌
+  </p>
+
+  <br>
+
+  <button class="main" onclick="goToSlide2()">
+    Clear the rain 🐧
+  </button>
+</div>
+
+<!-- SLIDE 2: PLAYFUL FORGIVE -->
+<div class="card hidden" id="slide2">
   <div class="bigPenguin">🐧</div>
 
   <h1>Zyaan, will you forgive me?</h1>
 
-  <div class="apology">
-    I am sorry.<br><br>
+  <p>
+    Tiny penguin is officially sorry<br>
+    and waiting for judgement 🐧
+  </p>
 
-    I know I messed up.<br><br>
+  <br>
 
-    I know I said I wouldn't do it in front of them again,<br>
-    but I still did.<br><br>
-
-    I shouldn't have reacted there.<br><br>
-
-    Sorry for putting you in that position in front of them.<br><br>
-
-    Please maan jayein.<br><br>
-
-    — your problematic penguin 🐧
-  </div>
-
-  <button id="yesBtn" onclick="yesClicked()">
+  <button class="main" id="yesBtn" onclick="goToSlide3()">
     Fine. Come here. 🐧
   </button>
-
-  <div id="msg"></div>
 </div>
 
-<button id="noBtn" onclick="noClicked()">
+<button class="soft hidden" id="noBtn" onclick="noClicked()">
   Still angry? 🐧
 </button>
 
+<!-- SLIDE 3: HUG + MAKE UP -->
+<div class="card hidden" id="slide3">
+  <div style="font-size:95px;">🤗🐧</div>
+
+  <h1>PENGUIN HUG ACTIVATED</h1>
+
+  <p>
+    Thank you.<br><br>
+    I really am sorry.<br><br>
+    How can I make it up to you? 🥺🐧
+  </p>
+
+  <br>
+
+  <button class="main optionBtn" onclick="reply('Coffee compensation accepted ☕🐧')">
+    ☕ Buy me coffee
+  </button>
+
+  <button class="main optionBtn" onclick="reply('Game time demanded 🎮🐧')">
+    🎮 Play with me
+  </button>
+
+  <button class="main optionBtn" onclick="reply('Food apology required 🍕🐧')">
+    🍕 Feed me
+  </button>
+
+  <button class="main optionBtn" onclick="reply('Suffering selected 😤🐧')">
+    😤 Suffer
+  </button>
+
+  <div id="finalReply" style="margin-top:18px;color:#18384f;font-weight:bold;"></div>
+</div>
+
 <script>
-let noCount = 0;
+const rain = document.getElementById("rain");
+
+for(let i=0;i<100;i++){
+  const drop=document.createElement("div");
+  drop.className="drop";
+  drop.style.left=Math.random()*100+"vw";
+  drop.style.top=Math.random()*100+"vh";
+  drop.style.animationDuration=(0.5+Math.random())+"s";
+  rain.appendChild(drop);
+}
 
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 
+let noCount = 0;
+
 const noTexts = [
   "Okay okay 😭🐧",
-  "Still angry? 🐧",
+  "Still angry? 🥺",
   "I deserve that 😔🐧",
   "Tiny penguin request 👉👈",
   "Please reconsider 🐧",
   "Last last chance 🤌🐧",
-  "The penguin is running out of arguments 😭",
-  "Fine. I'll sit in the corner. 🐧",
-  "No button is tired now 😤🐧"
+  "Penguin is losing hope 😭",
+  "Fine. I'll sit in the corner. 🐧"
 ];
+
+function goToSlide2(){
+  document.getElementById("slide1").classList.add("hidden");
+  document.getElementById("slide2").classList.remove("hidden");
+
+  rain.style.display="none";
+  document.body.style.background="linear-gradient(180deg,#e8f7ff,#f8fbff,#fff2f5)";
+
+  noBtn.classList.remove("hidden");
+  moveNoButton();
+}
 
 function moveNoButton(){
   const padding = 20;
@@ -181,7 +257,7 @@ function moveNoButton(){
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 
-  const angle = Math.floor(Math.random() * 50) - 25;
+  const angle = Math.floor(Math.random()*50)-25;
   noBtn.style.transform = "rotate(" + angle + "deg)";
 }
 
@@ -189,99 +265,25 @@ function noClicked(){
   noBtn.innerHTML = noTexts[noCount % noTexts.length];
   moveNoButton();
 
-  yesBtn.style.transform = "scale(" + (1 + noCount * 0.09) + ")";
-  yesBtn.innerHTML = noCount > 4 ? "Please forgive me 🐧" : "Fine. Come here. 🐧";
+  yesBtn.style.transform = "scale(" + (1 + noCount * 0.08) + ")";
+  if(noCount > 4){
+    yesBtn.innerHTML = "Please forgive me 🐧";
+  }
 
   noCount++;
 }
 
-function yesClicked(){
-  document.body.innerHTML = `
-  <div style="
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(180deg,#e8f7ff,#f8fbff,#fff2f5);
-    padding:25px;
-    font-family:Arial,sans-serif;
-    text-align:center;
-  ">
-    <div style="
-      background:white;
-      padding:35px 25px;
-      border-radius:32px;
-      max-width:450px;
-      width:100%;
-      box-shadow:0 12px 30px rgba(0,0,0,.15);
-    ">
-      <div style="font-size:95px;">🤗🐧</div>
-
-      <h1 style="color:#18384f;margin-bottom:15px;">
-        PENGUIN HUG ACTIVATED
-      </h1>
-
-      <p style="
-        font-size:18px;
-        line-height:1.8;
-        color:#3d2c2c;
-        margin-bottom:25px;
-      ">
-        Thank you.<br><br>
-        I really am sorry.<br><br>
-        🥹🐧
-      </p>
-
-      <h2 style="color:#18384f;margin-bottom:20px;">
-        How can I make it up to you? 🐧
-      </h2>
-
-      <div style="
-        display:flex;
-        flex-direction:column;
-        gap:12px;
-      ">
-        <button onclick="replyMsg('Coffee compensation accepted ☕🐧')"
-          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
-          ☕ Buy me coffee
-        </button>
-
-        <button onclick="replyMsg('Game time demanded 🎮🐧')"
-          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
-          🎮 Play with me
-        </button>
-
-        <button onclick="replyMsg('Food apology required 🍕🐧')"
-          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
-          🍕 Feed me
-        </button>
-
-        <button onclick="replyMsg('Suffering has been selected 😤🐧')"
-          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
-          😤 Suffer
-        </button>
-      </div>
-
-      <div id="finalReply" style="
-        margin-top:22px;
-        font-weight:bold;
-        color:#18384f;
-        font-size:18px;
-      "></div>
-    </div>
-  </div>
-  `;
+function goToSlide3(){
+  document.getElementById("slide2").classList.add("hidden");
+  document.getElementById("slide3").classList.remove("hidden");
+  noBtn.classList.add("hidden");
 }
 
-function replyMsg(text){
+function reply(text){
   document.getElementById("finalReply").innerHTML =
-    text + "<br><br>Request has been noted by the penguin committee.";
+  text + "<br><br>Request noted by penguin committee.";
 }
-
-window.onload = moveNoButton;
-window.onresize = moveNoButton;
 </script>
 
 </body>
 </html>
-
