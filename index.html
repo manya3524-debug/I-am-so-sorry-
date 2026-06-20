@@ -1,4 +1,4 @@
-     <!DOCTYPE html>
+           <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -116,6 +116,19 @@ button{
   width:100%;
   margin-top:10px;
 }
+
+#customBox{
+  display:none;
+  margin-top:15px;
+}
+
+#punishmentInput{
+  width:100%;
+  padding:12px;
+  border-radius:15px;
+  border:2px solid #18384f;
+  font-size:16px;
+}
 </style>
 </head>
 
@@ -129,7 +142,7 @@ button{
 <div class="float" style="bottom:20%;left:9%;">🐧</div>
 <div class="float" style="bottom:12%;right:9%;">✨</div>
 
-<!-- SLIDE 1: RAIN APOLOGY -->
+<!-- SLIDE 1 -->
 <div class="card" id="slide1">
   <div class="bigPenguin">🐧</div>
 
@@ -152,7 +165,7 @@ button{
   </button>
 </div>
 
-<!-- SLIDE 2: PLAYFUL FORGIVE -->
+<!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
   <div class="bigPenguin">🐧</div>
 
@@ -166,7 +179,7 @@ button{
   <br>
 
   <button class="main" id="yesBtn" onclick="goToSlide3()">
-    Fine it's okay 🥳🐧
+    Fine. Come here. 🐧
   </button>
 </div>
 
@@ -174,7 +187,7 @@ button{
   Still angry? 🐧
 </button>
 
-<!-- SLIDE 3: HUG + MAKE UP -->
+<!-- SLIDE 3 -->
 <div class="card hidden" id="slide3">
   <div style="font-size:95px;">🤗🐧</div>
 
@@ -183,26 +196,35 @@ button{
   <p>
     Thank you.<br><br>
     I really am sorry.<br><br>
-    How can I make it up to you? 🥺🐧
+    The penguin has been found guilty.<br>
+    What's the sentence? 🐧⚖️
   </p>
 
   <br>
 
-  <button class="main optionBtn" onclick="reply('Coffee compensation accepted ☕🐧')">
-special request
+  <button class="main optionBtn" onclick="reply('One game night has been demanded 🎮🐧')">
+    🎮 Play with me
   </button>
 
-  <button class="main optionBtn" onclick="reply('Game time demanded 🎮🐧')">
-    dont ever do that again 
+  <button class="main optionBtn" onclick="reply('Food compensation accepted 🍕🐧')">
+    🍕 Feed me
   </button>
 
-  <button class="main optionBtn" onclick="reply('Food apology required 🍕🐧')">
-say sorry again 
+  <button class="main optionBtn" onclick="reply('Coffee settlement approved ☕🐧')">
+    ☕ Buy me coffee
   </button>
 
-  <button class="main optionBtn" onclick="reply('Suffering selected 😤🐧')">
-    😤 Suffer
+  <button class="main optionBtn" onclick="customPunishment()">
+    ✍️ My own punishment
   </button>
+
+  <div id="customBox">
+    <input id="punishmentInput" placeholder="Type your punishment here 😤">
+
+    <button class="main" onclick="submitPunishment()">
+      Submit 🐧
+    </button>
+  </div>
 
   <div id="finalReply" style="margin-top:18px;color:#18384f;font-weight:bold;"></div>
 </div>
@@ -282,6 +304,17 @@ function goToSlide3(){
 function reply(text){
   document.getElementById("finalReply").innerHTML =
   text + "<br><br>Request noted by penguin committee.";
+}
+
+function customPunishment(){
+  document.getElementById("customBox").style.display = "block";
+}
+
+function submitPunishment(){
+  const value = document.getElementById("punishmentInput").value;
+
+  document.getElementById("finalReply").innerHTML =
+  "Punishment received 😭🐧<br><br>" + value;
 }
 </script>
 
