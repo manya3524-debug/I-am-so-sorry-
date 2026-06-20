@@ -37,16 +37,28 @@ body{
   to{transform:translateY(110vh)}
 }
 
-.float{
+.penguinBg{
   position:fixed;
-  font-size:30px;
-  opacity:.45;
-  animation:floaty 5s infinite ease-in-out;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
   z-index:2;
 }
 
-@keyframes floaty{
-  50%{transform:translateY(-15px)}
+.movingPenguin{
+  position:absolute;
+  font-size:24px;
+  opacity:.45;
+  animation:penguinFloat linear infinite;
+}
+
+@keyframes penguinFloat{
+  from{
+    transform:translateY(110vh) rotate(0deg);
+  }
+  to{
+    transform:translateY(-20vh) rotate(360deg);
+  }
 }
 
 .card{
@@ -135,14 +147,8 @@ button{
 <body>
 
 <div class="rain" id="rain"></div>
+<div class="penguinBg" id="penguinBg"></div>
 
-<div class="float" style="top:8%;left:8%;">🐧</div>
-<div class="float" style="top:18%;right:10%;">🧊</div>
-<div class="float" style="top:35%;right:7%;">🐟</div>
-<div class="float" style="bottom:20%;left:9%;">🐧</div>
-<div class="float" style="bottom:12%;right:9%;">✨</div>
-
-<!-- SLIDE 1 -->
 <div class="card" id="slide1">
   <div class="bigPenguin">🐧</div>
 
@@ -165,7 +171,6 @@ button{
   </button>
 </div>
 
-<!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
   <div class="bigPenguin">🐧</div>
 
@@ -187,7 +192,6 @@ button{
   Still angry? 🐧
 </button>
 
-<!-- SLIDE 3 -->
 <div class="card hidden" id="slide3">
   <div style="font-size:95px;">🤗🐧</div>
 
@@ -231,6 +235,7 @@ button{
 
 <script>
 const rain = document.getElementById("rain");
+const penguinBg = document.getElementById("penguinBg");
 
 for(let i=0;i<100;i++){
   const drop=document.createElement("div");
@@ -239,6 +244,16 @@ for(let i=0;i<100;i++){
   drop.style.top=Math.random()*100+"vh";
   drop.style.animationDuration=(0.5+Math.random())+"s";
   rain.appendChild(drop);
+}
+
+for(let i=0;i<28;i++){
+  const penguin=document.createElement("div");
+  penguin.className="movingPenguin";
+  penguin.innerHTML="🐧";
+  penguin.style.left=Math.random()*100+"vw";
+  penguin.style.animationDuration=(7+Math.random()*8)+"s";
+  penguin.style.animationDelay=(Math.random()*8)+"s";
+  penguinBg.appendChild(penguin);
 }
 
 const noBtn = document.getElementById("noBtn");
@@ -311,7 +326,7 @@ function customPunishment(){
 }
 
 function submitPunishment(){
-  const value = document.getElementById("punishmentInput").value;
+  const value = document.getElementById("punishmentInput").value || "No punishment entered 😭🐧";
 
   document.getElementById("finalReply").innerHTML =
   "Punishment received 😭🐧<br><br>" + value;
@@ -320,4 +335,4 @@ function submitPunishment(){
 
 </body>
 </html>
-  
+        
