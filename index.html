@@ -1,6 +1,3 @@
-
-<br>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,162 +12,139 @@ body{
   height:100vh;
   overflow:hidden;
   font-family:Arial,sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(#617f9d,#d8ebff);
-  transition:1s;
+  background:linear-gradient(180deg,#fffaf2,#ffd6dc);
+  position:relative;
 }
 
-.rain{position:fixed;inset:0;pointer-events:none}
-.drop{
+.float{
   position:absolute;
-  width:2px;
-  height:35px;
-  background:white;
-  opacity:.6;
-  animation:fall 1s linear infinite;
+  font-size:28px;
+  opacity:.45;
+  animation:softFloat 5s infinite ease-in-out;
 }
-@keyframes fall{to{transform:translateY(110vh)}}
 
-.card{
-  width:90%;
-  max-width:450px;
-  background:rgba(255,255,255,.93);
-  padding:30px;
-  border-radius:30px;
+@keyframes softFloat{
+  50%{transform:translateY(-15px)}
+}
+
+.mainBox{
+  position:absolute;
+  top:42%;
+  left:50%;
+  transform:translate(-50%,-50%);
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,.2);
-  z-index:2;
+  width:90%;
 }
 
-.penguin{font-size:78px;animation:bounce 1.2s infinite}
-@keyframes bounce{50%{transform:translateY(-10px)}}
-
-h1{color:#315d84;margin-bottom:15px}
-p{line-height:1.7;color:#444}
+h1{
+  font-size:28px;
+  color:#1d1111;
+  margin-bottom:20px;
+}
 
 button{
   border:none;
-  padding:13px 22px;
-  border-radius:25px;
+  padding:16px 28px;
+  border-radius:22px;
+  font-size:18px;
+  font-weight:bold;
   cursor:pointer;
-  margin:8px;
-  font-size:15px;
   transition:.3s;
 }
 
-.main{background:#315d84;color:white}
-.soft{background:#ececec}
-.hidden{display:none}
+#yesBtn{
+  background:#b00000;
+  color:white;
+  box-shadow:0 8px 20px rgba(176,0,0,.3);
+}
+
+#noBtn{
+  position:absolute;
+  background:white;
+  color:#1d1111;
+  border:3px solid #b00000;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
+  transform:rotate(-12deg);
+}
 
 #msg{
-  margin-top:18px;
-  color:#ff4f81;
+  margin-top:22px;
+  color:#b00000;
   font-weight:bold;
-  line-height:1.6;
+  font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="rain" id="rain"></div>
+<div class="float" style="top:8%;left:8%;">🥺</div>
+<div class="float" style="top:15%;right:9%;">💙</div>
+<div class="float" style="top:28%;right:13%;">😢</div>
+<div class="float" style="top:38%;right:6%;">💔</div>
+<div class="float" style="top:58%;left:8%;">💗</div>
+<div class="float" style="top:62%;right:18%;">💖</div>
+<div class="float" style="bottom:18%;left:7%;">✨</div>
+<div class="float" style="bottom:12%;right:8%;">💕</div>
 
-<div class="card">
-  <div class="penguin">🐧</div>
+<div class="mainBox">
+  <h1>Zyaan, will you forgive me? 🥺</h1>
 
-  <h1 id="title">Tap to clear the rain 🌧️</h1>
-
-  <p id="intro">
-    I am sorry.<br><br>
-    I know I messed up.<br>
-    I know I said I wouldn't do it in front of them again,<br>
-    but I did.<br><br>
-    Please, last time 🤌<br>
-    I am so sorry.
-  </p>
-
-  <br>
-
-  <button class="main" id="clearBtn" onclick="nextStep(event)">
-    Clear the rain 🐧
+  <button id="yesBtn" onclick="yesClicked()">
+    I Forgive You 💙
   </button>
 
-  <div id="stage2" class="hidden">
-    <button class="main" id="yesBtn" onclick="forgive(event)">
-      Okay, I forgive you ❤️
-    </button>
-
-    <button class="soft" id="noBtn" onclick="nope(event)">
-      No, still angry 😤
-    </button>
-
-    <div id="msg"></div>
-  </div>
+  <div id="msg"></div>
 </div>
 
+<button id="noBtn" onclick="noClicked()">
+  I’ll write you a poem 📝
+</button>
+
 <script>
-const rain = document.getElementById("rain");
-
-for(let i=0;i<100;i++){
-  let drop=document.createElement("div");
-  drop.className="drop";
-  drop.style.left=Math.random()*100+"vw";
-  drop.style.top=Math.random()*100+"vh";
-  drop.style.animationDuration=(0.5+Math.random())+"s";
-  rain.appendChild(drop);
-}
-
-function nextStep(e){
-  e.stopPropagation();
-
-  rain.style.display="none";
-  document.body.style.background="linear-gradient(135deg,#dff6ff,#fff3f8)";
-
-  document.getElementById("title").innerHTML="Will you forgive this penguin? 🐧";
-  document.getElementById("clearBtn").style.display="none";
-  document.getElementById("stage2").style.display="block";
-}
-
-function forgive(e){
-  e.stopPropagation();
-  document.getElementById("msg").innerHTML =
-    "Thank you 😭❤️<br>I really mean it.";
-}
-
 let noCount = 0;
 
-const noMessages = [
-  "Hmmm... understandable 😭",
-  "Are you still angry? 🐧",
-  "Okay, I probably deserve that 😔",
-  "But I am genuinely sorry ❤️",
-  "Fine... one more chance? 🥺",
-  "Please? Tiny penguin request 🐧",
-  "Last last chance? 🤌"
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const msg = document.getElementById("msg");
+
+const noTexts = [
+  "I’ll write you a poem 📝",
+  "I’ll say sorry again 🐧",
+  "Okay okay I deserve this 😭",
+  "Tiny penguin request 🥺",
+  "Last last chance 🤌",
+  "Please reconsider 😤",
+  "I am genuinely sorry ❤️"
 ];
 
-function nope(e){
-  e.stopPropagation();
+function moveNoButton(){
+  const x = Math.random() * (window.innerWidth - 220);
+  const y = Math.random() * (window.innerHeight - 90);
 
-  const msg = document.getElementById("msg");
-  const yesBtn = document.getElementById("yesBtn");
-  const noBtn = document.getElementById("noBtn");
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 
-  msg.innerHTML = noMessages[noCount] || "Penguin is still sorry 🐧❤️";
+  const angle = Math.floor(Math.random() * 40) - 20;
+  noBtn.style.transform = "rotate(" + angle + "deg)";
+}
 
-  let currentSize = 15 + noCount * 4;
-  yesBtn.style.fontSize = currentSize + "px";
-  yesBtn.style.padding = (13 + noCount * 3) + "px " + (22 + noCount * 5) + "px";
+function noClicked(){
+  noBtn.innerHTML = noTexts[noCount % noTexts.length];
+  moveNoButton();
+
+  yesBtn.style.fontSize = (18 + noCount * 2) + "px";
+  yesBtn.style.padding = (16 + noCount * 2) + "px " + (28 + noCount * 4) + "px";
 
   noCount++;
-
-  if(noCount >= noMessages.length){
-    noBtn.style.display = "none";
-    msg.innerHTML = "No button has retired 😭🐧<br>Only forgiveness remains.";
-  }
 }
+
+function yesClicked(){
+  msg.innerHTML = "Thank you 😭❤️<br>I really mean it.";
+  noBtn.style.display = "none";
+}
+
+moveNoButton();
 </script>
 
 </body>
