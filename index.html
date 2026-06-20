@@ -1,29 +1,36 @@
-  <!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Zyaan 🐧💙</title>
+<title>For Zyaan 🐧</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
 body{
   min-height:100vh;
   overflow:hidden;
-  background:linear-gradient(180deg,#fffaf2,#ffd6dc);
+  background:linear-gradient(180deg,#e8f7ff,#f8fbff,#fff2f5);
   position:relative;
 }
 
+/* floating penguin background */
 .float{
   position:fixed;
-  font-size:28px;
+  font-size:30px;
   opacity:.45;
   animation:floaty 5s infinite ease-in-out;
+  z-index:1;
 }
 
 @keyframes floaty{
-  50%{transform:translateY(-15px)}
+  50%{transform:translateY(-16px);}
 }
 
 .mainBox{
@@ -34,25 +41,40 @@ body{
   text-align:center;
   width:90%;
   max-width:430px;
+  z-index:5;
+}
+
+.bigPenguin{
+  font-size:85px;
+  margin-bottom:8px;
+  animation:bounce 1.2s infinite;
+}
+
+@keyframes bounce{
+  50%{transform:translateY(-10px);}
 }
 
 h1{
   font-size:28px;
-  color:#1d1111;
+  color:#18384f;
   margin-bottom:18px;
 }
 
 .apology{
+  background:rgba(255,255,255,.88);
+  padding:22px;
+  border-radius:25px;
   font-size:17px;
   line-height:1.7;
-  color:#4d2f2f;
+  color:#3d2c2c;
   margin-bottom:24px;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
 button{
   border:none;
   padding:16px 28px;
-  border-radius:22px;
+  border-radius:24px;
   font-size:18px;
   font-weight:bold;
   cursor:pointer;
@@ -60,25 +82,26 @@ button{
 }
 
 #yesBtn{
-  background:#b00000;
+  background:#18384f;
   color:white;
-  box-shadow:0 8px 20px rgba(176,0,0,.3);
+  box-shadow:0 8px 20px rgba(24,56,79,.32);
   z-index:5;
 }
 
 #noBtn{
   position:fixed;
   background:white;
-  color:#1d1111;
-  border:3px solid #b00000;
+  color:#18384f;
+  border:3px solid #18384f;
   box-shadow:0 8px 18px rgba(0,0,0,.18);
   transform:rotate(-12deg);
-  z-index:10;
+  z-index:20;
+  max-width:240px;
 }
 
 #msg{
   margin-top:18px;
-  color:#b00000;
+  color:#18384f;
   font-weight:bold;
   font-size:18px;
 }
@@ -87,37 +110,46 @@ button{
 
 <body>
 
-<div class="float" style="top:8%;left:8%;">🥺</div>
-<div class="float" style="top:15%;right:9%;">💙</div>
-<div class="float" style="top:28%;right:13%;">😢</div>
-<div class="float" style="top:38%;right:6%;">💔</div>
-<div class="float" style="top:58%;left:8%;">💗</div>
-<div class="float" style="top:62%;right:18%;">💖</div>
+<div class="float" style="top:7%;left:8%;">🐧</div>
+<div class="float" style="top:15%;right:9%;">🧊</div>
+<div class="float" style="top:28%;right:13%;">🐟</div>
+<div class="float" style="top:38%;right:6%;">🐧</div>
+<div class="float" style="top:58%;left:8%;">🧊</div>
+<div class="float" style="top:62%;right:18%;">🐧</div>
 <div class="float" style="bottom:18%;left:7%;">✨</div>
-<div class="float" style="bottom:12%;right:8%;">💕</div>
+<div class="float" style="bottom:12%;right:8%;">🐟</div>
 
 <div class="mainBox">
-  <h1>vidit , will you forgive me? 🥺</h1>
+  <div class="bigPenguin">🐧</div>
+
+  <h1>Zyaan, will you forgive me?</h1>
 
   <div class="apology">
     I am sorry.<br><br>
-    I know I messed up.<br>
+
+    I know I messed up.<br><br>
+
     I know I said I wouldn't do it in front of them again,<br>
     but I still did.<br><br>
-    I shouldn't have reacted there.<br>
+
+    I shouldn't have reacted there.<br><br>
+
     Sorry for putting you in that position in front of them.<br><br>
-    Please maan jayein. 🐧
+
+    Please maan jayein.<br><br>
+
+    — your problematic penguin 🐧
   </div>
 
   <button id="yesBtn" onclick="yesClicked()">
-    I Forgive You 💙
+    Fine. Come here. 🐧
   </button>
 
   <div id="msg"></div>
 </div>
 
 <button id="noBtn" onclick="noClicked()">
-no 📝
+  Still angry? 🐧
 </button>
 
 <script>
@@ -127,15 +159,15 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 
 const noTexts = [
-  "Okay okay 😭",
-  "Still angry? 🥺",
-  "I deserve that 🐧",
+  "Okay okay 😭🐧",
+  "Still angry? 🐧",
+  "I deserve that 😔🐧",
   "Tiny penguin request 👉👈",
-  "Please reconsider 😭",
-  "Last last chance 🤌",
-  "Pretty please? 🥺💙",
-  " i am sorry na ,🫠", 
-  "No button is tired ab maan jayein Zyaan 😤"
+  "Please reconsider 🐧",
+  "Last last chance 🤌🐧",
+  "The penguin is running out of arguments 😭",
+  "Fine. I'll sit in the corner. 🐧",
+  "No button is tired now 😤🐧"
 ];
 
 function moveNoButton(){
@@ -155,11 +187,10 @@ function moveNoButton(){
 
 function noClicked(){
   noBtn.innerHTML = noTexts[noCount % noTexts.length];
-
   moveNoButton();
 
   yesBtn.style.transform = "scale(" + (1 + noCount * 0.09) + ")";
-  yesBtn.innerHTML = noCount > 4 ? "Please forgive me 💙" : "I Forgive You 💙";
+  yesBtn.innerHTML = noCount > 4 ? "Please forgive me 🐧" : "Fine. Come here. 🐧";
 
   noCount++;
 }
@@ -171,71 +202,80 @@ function yesClicked(){
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(180deg,#fff5f5,#ffe4ea);
+    background:linear-gradient(180deg,#e8f7ff,#f8fbff,#fff2f5);
     padding:25px;
+    font-family:Arial,sans-serif;
+    text-align:center;
   ">
     <div style="
       background:white;
       padding:35px 25px;
-      border-radius:30px;
+      border-radius:32px;
       max-width:450px;
       width:100%;
-      text-align:center;
       box-shadow:0 12px 30px rgba(0,0,0,.15);
-      font-family:Arial,sans-serif;
     ">
-      <div style="font-size:90px;">🤗💙</div>
+      <div style="font-size:95px;">🤗🐧</div>
 
-      <h1 style="color:#1f8acb;margin-bottom:15px;">
-        You're forgiven 💙
+      <h1 style="color:#18384f;margin-bottom:15px;">
+        PENGUIN HUG ACTIVATED
       </h1>
 
       <p style="
         font-size:18px;
         line-height:1.8;
-        color:#4d2f2f;
-        font-style:italic;
+        color:#3d2c2c;
         margin-bottom:25px;
       ">
-        "I am so sorry.<br><br>
-        I know I messed up.<br><br>
-        I shouldn't have reacted there.<br><br>
-        Sorry for putting you in that position in front of tthem<br><br>
-        Please maan jayein. 🐧"
+        Thank you.<br><br>
+        I really am sorry.<br><br>
+        🥹🐧
       </p>
 
-      <h2 style="color:#ff4f81;margin-bottom:20px;">
-        How can I make it up to you? 🥺💙
+      <h2 style="color:#18384f;margin-bottom:20px;">
+        How can I make it up to you? 🐧
       </h2>
 
-      <textarea
-        placeholder="Type your demands here 😤"
-        style="
-          width:100%;
-          height:100px;
-          padding:15px;
-          border-radius:18px;
-          border:2px solid #f1b6c8;
-          font-size:16px;
-          resize:none;
-        "></textarea>
-
-      <br><br>
-
-      <button style="
-        background:#1f8acb;
-        color:white;
-        border:none;
-        padding:14px 25px;
-        border-radius:20px;
-        font-size:16px;
-        font-weight:bold;
+      <div style="
+        display:flex;
+        flex-direction:column;
+        gap:12px;
       ">
-        Send Reply 💬
-      </button>
+        <button onclick="replyMsg('Coffee compensation accepted ☕🐧')"
+          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
+          ☕ Buy me coffee
+        </button>
+
+        <button onclick="replyMsg('Game time demanded 🎮🐧')"
+          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
+          🎮 Play with me
+        </button>
+
+        <button onclick="replyMsg('Food apology required 🍕🐧')"
+          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
+          🍕 Feed me
+        </button>
+
+        <button onclick="replyMsg('Suffering has been selected 😤🐧')"
+          style="background:#18384f;color:white;border:none;padding:14px;border-radius:20px;font-size:16px;font-weight:bold;">
+          😤 Suffer
+        </button>
+      </div>
+
+      <div id="finalReply" style="
+        margin-top:22px;
+        font-weight:bold;
+        color:#18384f;
+        font-size:18px;
+      "></div>
     </div>
   </div>
   `;
+}
+
+function replyMsg(text){
+  document.getElementById("finalReply").innerHTML =
+    text + "<br><br>Request has been noted by the penguin committee.";
 }
 
 window.onload = moveNoButton;
@@ -244,3 +284,4 @@ window.onresize = moveNoButton;
 
 </body>
 </html>
+
